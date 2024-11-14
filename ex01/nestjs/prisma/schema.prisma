@@ -1,0 +1,23 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider  = "postgresql"
+    url       = env("POSTGRES_PRISMA_URL")
+    directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+    id        Int      @id @default(autoincrement())
+    email     String   @unique @db.VarChar(255)
+    password  String   @db.VarChar(100)
+    fullname  String   @db.VarChar(50)
+    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now())
+}
+
+model Jwt {
+    jwt String   @id
+    exp DateTime
+}
