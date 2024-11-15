@@ -19,7 +19,7 @@ export class AuthService {
     const user = await this.userService.findByEmail(email);
 
     if (user) {
-      if (this.passwordEncoder.matches(password, user.password)) {
+      if (await this.passwordEncoder.matches(password, user.password)) {
         return {
           access_token: await this.generateToken(user),
         };

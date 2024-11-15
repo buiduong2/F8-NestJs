@@ -13,6 +13,7 @@ export class UserService {
   }
 
   findProfileByEmail(email: string) {
+    email = email || '';
     return this.prisma.user.findFirst({
       select: {
         email: true,
